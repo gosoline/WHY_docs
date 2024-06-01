@@ -50,33 +50,77 @@ _如果要配置多个远程,继续在此文件追加配置即可_
 
 ## 2. 离线下载`vscode-server`并安装
 
-如果远程端不能联网可以下载包离线安装,下载 vscode-server 的 url 需要和 vscode 客户端版本的 commit-id 对应.通过 vscode 面板的`帮助->关于`可以获取该信息,复制信息,我当前版本如下(_提交后面对应的就是 commit-id_):
+如果远程端不能联网可以下载包离线安装,下载 vscode-server 的 url 需要和 vscode 客户端版本的 commit-id 对应.通过 vscode 面板的`帮助->关于`可以获取该信息,复制信息,我当前版本如下(_提交后面对应的就是 commit_id_):
 
 ```
-版本: 1.85.1 (system setup)
-提交: 0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2
-日期: 2023-12-13T09:49:37.021Z
-Electron: 25.9.7
-ElectronBuildId: 25551756
-Chromium: 114.0.5735.289
-Node.js: 18.15.0
-V8: 11.4.183.29-electron.0
+版本: 1.89.1 (system setup)
+提交: dc96b837cf6bb4af9cd736aa3af08cf8279f7685
+日期: 2024-05-07T05:13:33.891Z
+Electron: 28.2.8
+ElectronBuildId: 27744544
+Chromium: 120.0.6099.291
+Node.js: 18.18.2
+V8: 12.0.267.19-electron.0
 OS: Windows_NT x64 10.0.19044
 ```
+
+### 2.1 旧版离线包下载
 
 vscode-server 下载地址如下,其中 commit_id 是上面复制的提交 id:
 
 ```
 x86:
-https://update.code.visualstudio.com/commit:${commit-id}/server-linux-x64/stable
+https://update.code.visualstudio.com/commit:${commit_id}/server-linux-x64/stable
 arm:
-https://update.code.visualstudio.com/commit:${commit-id}/server-linux-arm54/stable
+https://update.code.visualstudio.com/commit:${commit_id}/server-linux-arm64/stable
 ```
 
-通过 scp 或者其他方式把下载的压缩包,放在远程端上,将它解压到`/home/${user}/.vscode-server/bin/${commit_id}`目录下,尝试连接,如果任然连接不上,则可能需要修改`.vscode-server`文件夹及其子目录的权限,例如权限改为`777`,再尝试连接:
+将下载的文件 `vscode-server-linux-x64.tar.gz` 解压解包后名为 `vscode-server-linux-x64` 文件夹改名为 `${commit_id}` 放在 `/home/${user}/.vscode-server/bin/` 目录下.
+
+### 2.2 新版离线包下载
+
+在某次更新后远程端的 .vscode-server 目录结构发生变化:
+
+```
+📦.vscode-server
+ ┣━ 📁bin  # 存放旧方法下的vscode commit相关文件
+ ┃   ┗━ 📁${commit_id1}
+ ┃   ┗━ 📁${commit_id2}
+ ┃   ┗━ ···
+ ┣━ 📁cli  # 存放新方法下的vscode commit相关文件
+ ┃   ┗━ 📁servers
+ ┃   ┃   ┗━ 📁Stable-${commit_id}
+ ┃   ┃   ┃   ┗━ 📁servers
+ ┃   ┃   ┃   ┗━ ···
+ ┃   ┃   ┗━ ···
+ ┃   ┗━ 📜iru.json  # 存放最近的vscode commit_id
+ ┣━ 📜code-${commit_id}  # 存放vscode_cli_alpine_x64_cli.tar.gz解压后名为code的文件,并将其改名为code-${commit_id}
+ ┣━ 📁data
+ ┗━ 📁extensions
+```
+
+现在需要安装两个文件,两个文件的下载地址如下:
+
+```
+x86:
+https://vscode.download.prss.microsoft.com/dbazure/download/stable/${commit_id}/vscode-server-linux-x64.tar.gz
+https://vscode.download.prss.microsoft.com/dbazure/download/stable/${commit_id}/vscode_cli_alpine_x64_cli.tar.gz
+
+arm:
+https://vscode.download.prss.microsoft.com/dbazure/download/stable/${commit_id}/vscode-server-linux-arm64.tar.gz
+https://vscode.download.prss.microsoft.com/dbazure/download/stable/${commit_id}/vscode_cli_alpine_arm64_cli.tar.gz
+```
+
+第一个文件 `vscode-server-linux-x64.tar.gz` 解压解包后名为 `vscode-server-linux-x64` 文件夹改名为 `server` 放在 `/home/${user}/.vscode-server/cli/servers/Stable-${commit_id}/` 目录下.
+
+第二个文件 `vscode_cli_alpine_x64_cli.tar.gz` 解压解包后名为 `code` 的文件改名为 `code-${commit_id}`放在`/home/${user}/.vscode-server/`目录下
+
+### 2.3 无法连接可能问题
+
+如果仍然连接不上,则可能需要修改`.vscode-server`文件夹及其子目录的权限,例如权限改为`700`,再尝试连接:
 
 ```shell
-chmod -R 777 /home/${user}/.vscode-server/
+chmod -R 700 /home/${user}/.vscode-server/
 ```
 
 ## 3. 免密登录
@@ -102,6 +146,13 @@ Host xxx
   Port xx
   User xxx
   IdentityFile "C:\Users\${user}\.ssh\id_rsa"
+```
+
+如果手动创建 /home/${user}/.ssh/authorized_keys,需要更改其权限:
+
+```shell
+chmod 700 /home/${user}/.ssh
+chmod 600 /home/${user}/.ssh/authorized_keys
 ```
 
 ### 3.3 验证方式
