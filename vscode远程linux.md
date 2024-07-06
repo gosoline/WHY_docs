@@ -90,7 +90,7 @@ https://update.code.visualstudio.com/commit:${commit_id}/server-linux-arm64/stab
  ┣━ 📁cli  # 存放新方法下的vscode commit相关文件
  ┃   ┗━ 📁servers
  ┃   ┃   ┗━ 📁Stable-${commit_id}
- ┃   ┃   ┃   ┗━ 📁servers
+ ┃   ┃   ┃   ┗━ 📁server
  ┃   ┃   ┃   ┗━ ···
  ┃   ┃   ┗━ ···
  ┃   ┗━ 📜iru.json  # 存放最近的vscode commit_id
