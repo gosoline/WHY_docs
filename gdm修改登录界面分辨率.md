@@ -14,13 +14,13 @@
 2. 打开终端,拷贝 monitors.xml 文件到/var/lib/gdm/.config：
 
 ```shell
-cp ~/.config/monitors.xml /var/lib/gdm/.config/monitors.xml
+cp ~/.config/monitors.xml /var/lib/gdm/.config/
 ```
 
 3. 修改文件权限及配置
 
 ```shell
-chown gdm.gdm /var/lib/gdm/.config/monitors.xml
+chown gdm:gdm /var/lib/gdm/.config/monitors.xml
 ```
 
 生成的 monitors.xml 文件内容如下,如果需要修改分辨率,只需要修改 width 和 height 即可:
