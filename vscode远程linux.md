@@ -1,8 +1,21 @@
+---
+html:
+    embed_local_images: true
+    embed_svg: true
+    offline: false
+    toc: true
+
+print_background: false
+
+export_on_save:
+    html: true
+---
+
 <!-- @format -->
 
 # vscode 远程 linux(包括离线`vscode-server`安装,免密登录方法)
 
-本教程前提是安装并配置好 ssh 服务
+本教程前提是安装并配置好 ssh 服务,并且远程主机和本地主机在同一个局域网内.
 
 ## 1. vscode 安装安装远程所需扩展及配置
 
@@ -117,10 +130,22 @@ https://vscode.download.prss.microsoft.com/dbazure/download/stable/${commit_id}/
 
 ### 2.3 无法连接可能问题
 
+1. 权限问题
+
 如果仍然连接不上,则可能需要修改`.vscode-server`文件夹及其子目录的权限,例如权限改为`700`,再尝试连接:
 
 ```shell
 chmod -R 700 /home/${user}/.vscode-server/
+```
+
+2. ssh 设置问题
+
+打开远程主机的 sshd_config 文件,一般在`/etc/ssh/sshd_config`文件,找到`AllowTcpForwarding no`这一行,将 `no` 改为 `yes`,然后保存退出.
+
+然后重启 ssh 服务:
+
+```shell
+sudo systemctl restart sshd
 ```
 
 ## 3. 免密登录
@@ -155,6 +180,16 @@ chmod 700 /home/${user}/.ssh
 chmod 600 /home/${user}/.ssh/authorized_keys
 ```
 
-### 3.3 验证方式
+### 3.3 设置允许通过密钥登录
 
-3.2 完成后点击`vscode`中`远程资源管理器`的`刷新`,此时`远程资源管理器`会出现刚配置的远程连接,根据需要选择`在当前窗口连接`或`在新窗口中连接`,点击后确认左下角进入到连接成功的状态,期间没有提示输入密码的窗口,即代表成功了
+打开远程主机的 sshd_config 文件,一般在`/etc/ssh/sshd_config`文件,找到`PubkeyAuthentication no`这一行,将 `no` 改为 `yes`,然后保存退出.
+
+然后重启 ssh 服务:
+
+```shell
+sudo systemctl restart sshd
+```
+
+### 3.4 验证方式
+
+3.3 完成后点击`vscode`中`远程资源管理器`的`刷新`,此时`远程资源管理器`会出现刚配置的远程连接,根据需要选择`在当前窗口连接`或`在新窗口中连接`,点击后确认左下角进入到连接成功的状态,期间没有提示输入密码的窗口,即代表成功了
