@@ -2,7 +2,7 @@
 
 # linux 系统常用软件工具
 
-## 1. neofetch
+## neofetch
 
 neofetch 是一个用来显示,系统信息的命令行工具.
 
@@ -18,7 +18,7 @@ sudo dnf install neofetch
 neofetch
 ```
 
-## 2. tree
+## tree
 
 tree 是一个用来显示目录结构的命令行工具.
 
@@ -34,7 +34,7 @@ sudo dnf install tree
 tree
 ```
 
-## 3. htop
+## htop
 
 htop 是一个用来显示系统进程的命令行工具,是 top 命令的增强版.
 
@@ -50,7 +50,23 @@ sudo dnf install htop
 htop
 ```
 
-## 3. zsh
+## btop
+
+btop 是一个用来显示系统资源的命令行工具.
+
+1. 安装
+
+```shell
+sudo dnf install btop
+```
+
+2. 使用
+
+```shell
+btop
+```
+
+## zsh
 
 zsh 是一款强大的 shell 工具,它可以提供很多高级功能,比如自动补全,命令历史记录,自动纠错,自动跳转等.
 
@@ -78,7 +94,7 @@ chsh -s /bin/zsh
 
 ohmyzsh 是一款基于 zsh 的插件管理工具,它可以安装很多有用的插件,比如 git, zsh-autosuggestions, zsh-syntax-highlighting 等.
 
-## 4. 7zip
+## 7zip
 
 用于解压和压缩文件.
 
