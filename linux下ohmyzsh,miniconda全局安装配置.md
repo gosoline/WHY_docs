@@ -114,7 +114,7 @@ unset __conda_setup
 
 2. 修改为全局配置
 
-创建配置文件`/etc/zsh.d/conda.zshrc`,并复制上一步生成的代码到里面:
+创建配置文件`/etc/zsh.d/conda.zshrc`,并复制上一步生成的代码到里面
 
 ### 3.3 将 miniconda 添加到 zsh 的全局配置
 
@@ -132,6 +132,30 @@ source /etc/zsh.d/conda.zshrc
 
 ```shell
 source /etc/zshrc
+```
+
+### 3.5 配置全局`.condarc`文件
+
+配置 '/opt/miniconda3/.condarc'如下:
+
+```yaml
+# 设置conda源
+channels:
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+    - defaults
+
+# 设置不显示默认的conda环境提示
+changeps1: false
+# 设置conda显示解软件包的来源
+show_channel_urls: true
+# 设置conda自动激活base环境
+auto_activate_base: true
 ```
 
 # 附件
