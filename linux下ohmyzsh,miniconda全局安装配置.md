@@ -2,6 +2,8 @@
 
 # linux 下 ohmyzsh,miniconda 全局安装
 
+---
+
 linux 下为所有用户安装 omyzsh,miniconda 并配置全局环境变量
 
 ## 1. 安装 zsh

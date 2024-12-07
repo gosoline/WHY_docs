@@ -1,19 +1,8 @@
----
-html:
-    embed_local_images: true
-    embed_svg: true
-    offline: false
-    toc: true
-
-print_background: false
-
-export_on_save:
-    html: true
----
-
 <!-- @format -->
 
 # vscode 远程 linux(包括离线`vscode-server`安装,免密登录方法)
+
+---
 
 本教程前提是安装并配置好 ssh 服务,并且远程主机和本地主机在同一个局域网内.
 
@@ -45,10 +34,10 @@ ssh <user>@<hostname>:[port]
 
 ```
 Host xxx
-  HostName xxx.xxx.xxx.xxx
-  Port xx
-  User xxx
-  IdentityFile "xxx"
+    HostName xxx.xxx.xxx.xxx
+    Port xx
+    User xxx
+    IdentityFile "xxx"
 ```
 
 -   Host:这是一个主机别名,你可以使用这个别名来代替实际的主机名进行连接.
@@ -167,10 +156,10 @@ ssh-keygen -t rsa
 
 ```
 Host xxx
-  HostName xxx.xxx.xxx.xxx
-  Port xx
-  User xxx
-  IdentityFile "C:\Users\${user}\.ssh\id_rsa"
+    HostName xxx.xxx.xxx.xxx
+    Port xx
+    User xxx
+    IdentityFile "C:\Users\${user}\.ssh\id_rsa"
 ```
 
 如果手动创建 /home/${user}/.ssh/authorized_keys,需要更改其权限:
