@@ -125,6 +125,8 @@ unset __conda_setup
 ```shell
 # 在文件末尾添加
 source /etc/zsh.d/conda.zshrc
+# 设置默认conda环境为some
+conda activate some
 ```
 
 > 注意:
