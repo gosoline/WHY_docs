@@ -235,3 +235,51 @@ sudo apt install p7zip
 # 显示压缩包内文件列表
 7za l filename.7z
 ```
+
+### iotop
+
+iotop 是一个用来显示磁盘 I/O 状态的命令行工具.
+
+1. 安装
+
+```shell
+sudo apt install iotop
+```
+
+2. 使用
+
+```shell
+iotop
+```
+
+### atop
+
+atop 是一个用来显示系统性能的命令行工具.
+
+1. 安装
+
+```shell
+sudo apt install atop
+```
+
+2. 使用
+
+```shell
+atop
+```
+
+### glances
+
+glances 是一个用来显示系统性能的命令行工具.
+
+1. 安装
+
+```shell
+sudo apt install glances
+```
+
+2. 使用
+
+```shell
+glances
+```
