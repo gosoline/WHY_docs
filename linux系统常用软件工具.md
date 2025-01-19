@@ -236,6 +236,22 @@ sudo apt install p7zip
 7za l filename.7z
 ```
 
+### telnet
+
+telnet 用于远程登录服务器,可以用来测试网络连接及端口状况.
+
+1. 安装
+
+```shell
+sudo apt install telnet
+```
+
+2. 使用
+
+```shell
+telnet ${host} ${端口}
+```
+
 ### iotop
 
 iotop 是一个用来显示磁盘 I/O 状态的命令行工具.
