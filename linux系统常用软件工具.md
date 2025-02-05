@@ -299,3 +299,19 @@ sudo apt install glances
 ```shell
 glances
 ```
+
+### ranger
+
+Ranger 是一款基于文本的文件管理器,适用于 Linux 和 Unix 系统, 它通过终端界面提供直观的文件管理功能.
+
+1. 安装
+
+```shell
+sudo apt install ranger
+```
+
+2. 使用
+
+```shell
+ranger
+```
